@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/BurntSushi/toml"
 	"strings"
+	"testing"
 	"time"
 )
 
@@ -56,6 +57,10 @@ func init() {
 	// Decode the TOML file into the Default configuration.
 	_, err := toml.DecodeFile("./config.toml", Default)
 	if err != nil {
+		if testing.Testing() {
+			return
+		}
+
 		panic(err) // Panic if there is an error decoding the TOML file.
 	}
 

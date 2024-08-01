@@ -43,7 +43,7 @@ To run the application : ``go build`` then ``./go-savannahTech`` or ``go run mai
 
 8- Run test
 
-To run test : ``go test``
+To run test : ``go test ./...``
 
 
 ## configuration file
