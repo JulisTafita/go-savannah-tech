@@ -1,21 +1,10 @@
-# Configuration for the web server
-[server]
-    # Indicates whether the web server should be started
-    run_web_server = true
-
-    # The hostname or IP address on which the web server will listen
-    web_server_host = "localhost"
-
-    # The port number on which the web server will listen
-    web_server_port = "8089"
-
 # Configuration for the database connection
 [database]
     # The username used for connecting to the database
     user_name = "root"
 
     # The password used for connecting to the database
-    user_password = "UnderAll4"
+    user_password = "samplePassword"
 
     # The name of the database to connect to
     name = "savannah_tech"
@@ -53,3 +42,14 @@
 
     # Whether to reset the collection of data before pulling new data
     reset_collection = true
+
+# Configuration for the web server
+[server]
+    # Indicates whether the web server should be started
+    run_web_server = true
+
+    # The hostname or IP address on which the web server will listen
+    web_server_host = "localhost"
+
+    # The port number on which the web server will listen
+    web_server_port = "8089"

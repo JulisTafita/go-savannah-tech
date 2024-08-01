@@ -254,11 +254,11 @@ func GetTopNCommitAuthors(N int) (author []CommitAuthor, err error) {
 		    count(ic.id) as 'commit_count' 
 		FROM i_repository ir
 			JOIN i_commit ic On ir.id = ic.i_repository_id
-		WHERE ir.name = ? group by ic.author_login ORDER BY count(ic.id)
+		WHERE ir.name = ? group by ic.author_login ORDER BY count(ic.id) DESC
 	`
 
 	if N > 0 {
-		query += ` DESC LIMIT ` + strconv.Itoa(N)
+		query += ` LIMIT ` + strconv.Itoa(N)
 	}
 
 	err = db.Select(&author, query, config.Default.Github.RepositoryName)
