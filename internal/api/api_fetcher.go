@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/JulisTafita/go-savannahTech/internal/config"
 	"io"
@@ -130,6 +131,12 @@ func fetch(url string) (response []byte, err error) {
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return nil, err
+	}
+
+	if res.Status != http.StatusText(http.StatusOK) {
+		fmt.Println(res.Status)
+		fmt.Println(string(body))
+		return nil, errors.New(string(body))
 	}
 
 	return body, err
