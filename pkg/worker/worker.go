@@ -30,12 +30,14 @@ func Run() (err error) {
 
 // workerJob retrieves repository data and processes it.
 func workerJob() {
-	fmt.Println("🔄 worker restart")
+	fmt.Println("🔄 worker start job")
 
 	// Get repository data using the configured repository name.
 	err := repository.GetRepositoryData(config.Default.Github.RepositoryName)
 	if err != nil {
-		fmt.Println("Error getting repository data")
+		fmt.Println("❌ Error getting repository data")
 		return
 	}
+
+	fmt.Println("✅ job completed")
 }

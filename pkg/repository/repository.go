@@ -3,6 +3,7 @@ package repository
 import (
 	"database/sql"
 	"errors"
+	"fmt"
 	"github.com/JulisTafita/go-savannahTech/internal/api"
 	"github.com/JulisTafita/go-savannahTech/internal/config"
 	"github.com/JulisTafita/go-savannahTech/internal/db"
@@ -64,6 +65,8 @@ func GetRepositoryData(repositoryName string) (err error) {
 	if err != nil {
 		return
 	}
+
+	fmt.Println("✅ repository name : ", repository.Name, " by ", repository.Owner)
 
 	// Sync repository commits.
 	err = repository.syncRepositoryCommits()
@@ -225,6 +228,8 @@ func (repository *IRepository) syncRepositoryCommits() (err error) {
 			return err
 		}
 	}
+
+	fmt.Println("✅ ", strconv.Itoa(len(repositoryCommits)), " commits pulled")
 
 	return err
 }

@@ -6,44 +6,58 @@ The goal of this project is to build a service in Golang that fetches data from 
 
 ## Getting started
 
-To run go-savannah-tech on local :
+Follow these steps to set up and run the project locally:
 
-1- Install golang v1.22 from source:
+#### Prerequisites
 
-🔗 https://go.dev/doc/install
+1. Install Golang v1.22
+  * [Golang Installation Guide](https://go.dev/doc/install)
 
-2- Install latest MySql version
+2. Install the latest version of MySQL
+  * [MySQL Installation Guide](https://dev.mysql.com/downloads/installer/)
 
-🔗 https://dev.mysql.com/downloads/installer/
 
-3- Clone go-savannah-tech repository
+#### Installation
+
+*  Clone go-savannah-tech repository
 
 ```bash
   git clone https://github.com/JulisTafita/go-savannah-tech.git
 
 ```
 
-4-  Install go-savannah-tech dependancies
+* Install go-savannah-tech dependancies
 
 ```bash
   cd go-savannah-tech
   go mod tidy
 ```
 
-5- Create and restore savannah_tech database
+*  Create and restore savannah_tech database
 
-You can find the full schema and ready to use mysql script in ``/database``.
-It will create a database called ``savannah_tech`` and two table ``i_repository`` and ``i_commit``.
+   NB: You can find the full schema and ready to use mysql script in ``/database``.
+   It will create a database called ``savannah_tech`` and two table ``i_repository``  and ``i_commit``.
 
-6- Ensure that config.toml is correctly configured with your settings.
+* Configure `config.toml` with your settings.
 
-7- Run
+*  Build and run the application:
 
-To run the application : ``go build`` then ``./go-savannahTech`` or ``go run main.go``
+````
+go build
+./go-savannahTech.exe
+````
+
+Alternatively, you can use:
+
+ ````
+ go run main.go
+ ````
 
 8- Run test
 
-To run test : ``go test ./...``
+````
+go test ./...
+````
 
 
 ## configuration file

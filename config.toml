@@ -4,7 +4,7 @@
     user_name = "root"
 
     # The password used for connecting to the database
-    user_password = "samplePassword"
+    user_password = "UnderAll4"
 
     # The name of the database to connect to
     name = "savannah_tech"
@@ -22,7 +22,7 @@
 
     # The GitHub user token for accessing private repositories
     # Uncomment the line below and add your token if you need access to a private repository
-    # user_token = ""
+     user_token = ""
 
     # The name of the GitHub repository to interact with
     repository_name = "material-design-icons"
