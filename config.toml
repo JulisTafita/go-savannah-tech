@@ -7,7 +7,7 @@
     user_password = "UnderAll4"
 
     # The name of the database to connect to
-    name = "savannah_tech"
+    name = "go_tech_db"
 
     # The hostname or IP address of the database server
     host = "localhost"
@@ -30,7 +30,7 @@
 # Configuration for data pulling options
 [option]
     # The cron schedule expression for periodically pulling data
-    pulling_cron_job_spec = "@every 01h00m00s"
+    pulling_cron_job_spec = "@every 00h00m10s"
 
     # The start date for pulling data (in ISO 8601 format)
     # Leave empty if you don't want to set a specific start date

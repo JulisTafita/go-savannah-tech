@@ -8,6 +8,7 @@ import (
 	"github.com/JulisTafita/go-savannahTech/internal/config"
 	"github.com/JulisTafita/go-savannahTech/internal/db"
 	"strconv"
+	"testing"
 	"time"
 )
 
@@ -50,66 +51,12 @@ type CommitAuthor struct {
 	CommitCount int    `json:"commit_count"`
 }
 
-// GetRepositoryData retrieves and updates repository data.
-func GetRepositoryData(repositoryName string) (err error) {
-	var repository = &IRepository{}
-
-	// Retrieve repository data from the API.
-	repository, err = repository.GetRepositoryFromApi(repositoryName)
-	if err != nil {
-		return
-	}
-
-	// Add or update the repository in the database.
-	err = repository.AddOrUpdate()
-	if err != nil {
-		return
-	}
-
-	fmt.Println("✅ repository name : ", repository.Name, " by ", repository.Owner)
-
-	// Sync repository commits.
-	err = repository.syncRepositoryCommits()
-	if err != nil {
+// AddOrUpdate inserts or updates the repository in the database.
+func (repository *IRepository) AddOrUpdate() (err error) {
+	if testing.Testing() {
 		return err
 	}
 
-	return err
-}
-
-// GetRepositoryFromApi retrieves repository data from the API.
-func (repository *IRepository) GetRepositoryFromApi(name string) (newRepository *IRepository, err error) {
-	var repositoryService api.RepositoryService
-	var repositories []api.Repository
-
-	// Check if a private repository should be used.
-	if config.UsePrivateRepository() {
-		repos, _ := repositoryService.GetRepository(name)
-		if repos.ID > 0 {
-			return parseRepository(&repos), err
-		}
-
-		repositories, _ = repositoryService.GetUserRepositoryList()
-
-		newRepository = look(name, repositories)
-		if newRepository != nil {
-			return newRepository, err
-		}
-	}
-
-	// Search for the repository by name.
-	repositories, _ = repositoryService.SearchRepositoryByName(name)
-
-	newRepository = look(name, repositories)
-	if newRepository != nil {
-		return newRepository, err
-	}
-
-	return nil, errors.New("repository not found")
-}
-
-// AddOrUpdate inserts or updates the repository in the database.
-func (repository *IRepository) AddOrUpdate() (err error) {
 	var _repository IRepository
 	query := `
 		INSERT INTO i_repository(
@@ -177,7 +124,7 @@ func (repository *IRepository) AddOrUpdate() (err error) {
 }
 
 // syncRepositoryCommits synchronizes the repository commits.
-func (repository *IRepository) syncRepositoryCommits() (err error) {
+func (repository *IRepository) SyncRepositoryCommits() (err error) {
 	var repositoryService api.RepositoryService
 	var subQueryPart string
 	var subQueryArgs []any
@@ -185,6 +132,12 @@ func (repository *IRepository) syncRepositoryCommits() (err error) {
 	// Retrieve the commits from the API.
 	repositoryCommits, err := repositoryService.GetRepositoryCommits(repository.Owner, repository.Name, config.Default.Option.PullingStartDate, config.Default.Option.PullingEndDate)
 	if err != nil {
+		return err
+	}
+
+	fmt.Println("✅ ", strconv.Itoa(len(repositoryCommits)), " commits pulled")
+
+	if testing.Testing() {
 		return err
 	}
 
@@ -228,8 +181,6 @@ func (repository *IRepository) syncRepositoryCommits() (err error) {
 			return err
 		}
 	}
-
-	fmt.Println("✅ ", strconv.Itoa(len(repositoryCommits)), " commits pulled")
 
 	return err
 }

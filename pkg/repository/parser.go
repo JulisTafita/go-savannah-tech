@@ -5,7 +5,7 @@ import (
 )
 
 // parseRepository converts an api.Repository object to an IRepository object.
-func parseRepository(apiRepository *api.Repository) *IRepository {
+func ParseRepository(apiRepository *api.Repository) *IRepository {
 	if apiRepository == nil {
 		// Return an empty IRepository if the input is nil.
 		return &IRepository{}
@@ -46,12 +46,12 @@ func parseCommit(apiCommit *api.RepositoryCommit) *ICommit {
 }
 
 // look searches for a repository by name in a slice of api.Repository objects.
-func look(name string, repositories []api.Repository) (repository *IRepository) {
+func Look(name string, repositories []api.Repository) (repository *IRepository) {
 	// Iterate through the repositories to find one with the matching name.
 	for i := 0; i < len(repositories); i++ {
 		if repositories[i].Name == name {
 			// Convert the found repository to an IRepository and return it.
-			return parseRepository(&repositories[i])
+			return ParseRepository(&repositories[i])
 		}
 	}
 	// Return nil if no matching repository is found.

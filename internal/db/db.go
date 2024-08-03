@@ -6,6 +6,7 @@ import (
 	_ "github.com/go-sql-driver/mysql" // MySQL driver
 	"github.com/iancoleman/strcase"
 	"github.com/jmoiron/sqlx"
+	"testing"
 	"time"
 )
 
@@ -20,6 +21,13 @@ var client *sqlx.DB
 
 // init initializes the database connection and sets connection parameters.
 func init() {
+	if testing.Testing() {
+		return
+	}
+	InitializeMySqlCx()
+}
+
+func InitializeMySqlCx() {
 	var err error
 	// Connect to the database using the connection string from the config.
 	client, err = sqlx.Connect(defaultDriver, config.GetDatabaseString())

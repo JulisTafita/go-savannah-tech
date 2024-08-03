@@ -53,21 +53,22 @@ var Default *App
 
 // init initializes the Default configuration by reading it from a TOML file.
 func init() {
+	InitializeConfig("./config.toml")
+}
+
+func InitializeConfig(config string) {
 	Default = &App{}
-	// Decode the TOML file into the Default configuration.
-	_, err := toml.DecodeFile("./config.toml", Default)
+	_, err := toml.DecodeFile(config, Default)
 	if err != nil {
 		if testing.Testing() {
 			return
 		}
-
-		panic(err) // Panic if there is an error decoding the TOML file.
+		panic(err)
 	}
 
-	// Sanitize the configuration data.
 	err = sanitize()
 	if err != nil {
-		panic(err) // Panic if there is an error sanitizing the data.
+		panic(err)
 	}
 }
 
