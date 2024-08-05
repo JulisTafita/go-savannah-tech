@@ -8,14 +8,6 @@ The goal of this project is to build a service in Golang that fetches data from 
 
 Follow these steps to set up and run the project locally:
 
-#### Prerequisites
-
-1. Install Golang v1.22
-  * [Golang Installation Guide](https://go.dev/doc/install)
-
-2. Install the latest version of MySQL
-  * [MySQL Installation Guide](https://dev.mysql.com/downloads/installer/)
-
 
 #### Installation
 
@@ -26,39 +18,17 @@ Follow these steps to set up and run the project locally:
 
 ```
 
-* Install go-savannah-tech dependancies
-
-```bash
-  cd go-savannah-tech
-  go mod tidy
-```
-
-*  Create and restore savannah_tech database
-
-   NB: You can find the full schema and ready to use mysql script in ``/database``.
-   It will create a database called ``savannah_tech`` and two table ``i_repository``  and ``i_commit``.
-
-* Configure `config.toml` with your settings.
-
-*  Build and run the application:
+*  Build and run the application on docker:
 
 ````
-go build
-./go-savannahTech.exe
+docker-compose up
 ````
-
-Alternatively, you can use:
-
- ````
- go run main.go
- ````
 
 8- Run test
 
 ````
 go test ./...
 ````
-
 
 ## configuration file
 

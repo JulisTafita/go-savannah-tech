@@ -133,7 +133,7 @@ func fetch(url string) (response []byte, err error) {
 		return nil, err
 	}
 
-	if res.Status != http.StatusText(http.StatusOK) {
+	if res.StatusCode != http.StatusOK {
 		fmt.Println(res.Status)
 		fmt.Println(string(body))
 		return nil, errors.New(string(body))

@@ -4,13 +4,15 @@
     user_name = "root"
 
     # The password used for connecting to the database
-    user_password = "UnderAll4"
+    user_password = "Rcgct6YZneSgRtT"
+
+#Rcgct6YZneSgRtT
 
     # The name of the database to connect to
-    name = "go_tech_db"
+    name = "savannah_tech"
 
     # The hostname or IP address of the database server
-    host = "localhost"
+    host = "database"
 
     # The port number on which the database server is listening
     port = "3306"
@@ -25,17 +27,17 @@
      user_token = ""
 
     # The name of the GitHub repository to interact with
-    repository_name = "material-design-icons"
+    repository_name = "chromium"
 
 # Configuration for data pulling options
 [option]
     # The cron schedule expression for periodically pulling data
-    pulling_cron_job_spec = "@every 00h00m10s"
+    pulling_cron_job_spec = "@every 01h00m00s"
 
     # The start date for pulling data (in ISO 8601 format)
     # Leave empty if you don't want to set a specific start date
     # eg value: 2023-09-14 12:11:00
-    pulling_start_date = ""
+    pulling_start_date = "2023-09-14 12:11:00"
 
     # The end date for pulling data (in ISO 8601 format)
     pulling_end_date = ""

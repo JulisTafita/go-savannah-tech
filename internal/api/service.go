@@ -2,6 +2,7 @@ package api
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 )
 
@@ -48,6 +49,7 @@ func (service *RepositoryService) GetRepositoryCommits(owner, repositoryName str
 			fmt.Println(err)
 			return commits, nil
 		}
+		fmt.Println("ℹ️ commit page " + strconv.Itoa(activePage) + " with " + strconv.Itoa(len(newCommits)))
 		commits = append(commits, newCommits...)
 		activePage += 1
 	}

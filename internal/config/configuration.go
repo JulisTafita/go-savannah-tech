@@ -79,10 +79,13 @@ func UsePrivateRepository() bool {
 
 // GetDatabaseString constructs the database connection string from the configuration.
 func GetDatabaseString() string {
-	return fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true",
+	var db = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true",
 		Default.Database.UserName,
 		Default.Database.UserPassword,
 		Default.Database.Host,
 		Default.Database.Port,
 		Default.Database.Name)
+
+	fmt.Println("mysql : ", db)
+	return db
 }
